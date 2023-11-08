@@ -1,4 +1,5 @@
 
+// Challenge 1
 let imgURL = 'http://localhost:3000/games';
 fetch(imgURL)
 .then(resp => resp.json())
@@ -9,7 +10,7 @@ fetch(imgURL)
     renderGame(games)
     }
 })
-
+// Challenge 2
 function renderGame (games) {
     let gameList = document.querySelector('.game-list');
     let name = document.createElement('h5');
@@ -17,22 +18,34 @@ function renderGame (games) {
 
     gameList.append(name)
 
+//Challenge 3
+
+    name.addEventListener('click', () => renderDetails(games))
 }
 
 function renderDetails (games) {
 
+    let title = document.querySelector('#detail-title')
+    title.textContent = games.name;
+
     let image = document.querySelector('#detail-image');
     image.src = games.image;
 
-    let name = document.querySelector('#detail-title')
-    name.textContent = games.name;
-
     let highScore = document.querySelector('#detail-high-score');
-    highScore = games['high_score']
+    highScore.textContent = games['high_score']
 
 }
+// Challenge 4
 
-// name.addEventListneer('click', (e) => {
-    // e.preventDefault
-//     renderDetails(games)
-// })
+let form = document.querySelector('#high-score-form')
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+   let newScore = e.target["score-input"].value
+   let highScore = document.querySelector('#detail-high-score')
+
+    highScore.textContent = newScore
+    // form.reset()
+ })
+
+
